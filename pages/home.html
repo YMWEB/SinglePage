@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html >
+<meta charset="utf8">
+	<head><title>P5 page</title></head>	
+		 
+		 		<div class="left-panel">
+		 			<label ng-click="isShow=!isShow">Instructions</label>
+		 			<div ng-show="isShow" class="instruction">
+		 				<button>X</button>
+		 				<p>this is the instruction</p>
+		 			</div>
+
+		 		</div>
+
+		 		<div class="main-panel">	
+
+		 		<form>
+			 		<label>Please input the lockers:</label>
+			 		<input type="text" name="inputId" ng-model="usbKeys" />
+			 		<button ng-click="searchLocker()">Add</button>
+			 	
+			 			<ul class="th">
+			 				<li class="first">Locker Ids</li>
+			 				<li>lock type</li>
+			 				<li>lock node</li>
+			 				<li>lock products</li>
+			 				<li>lock effective</li>
+			 				<li>price</li>		 				
+			 				<li>Resume</li>
+
+			 			</ul>
+			 			<ul ng-repeat="lock in locker_data">
+			 				<li class="first">{{lock.usbKey}}</li>
+			 				<li>{{lock.type}}</li>
+			 				<li>{{lock.node}}</li>
+			 				<li>{{lock.effective}}</li>
+			 				<li>
+			 					<select ng-change="current_option_change()" ng-model="current_option" ng-options="option.name for option in products">
+			 					</select>
+			 				</li>
+			 			
+			 				<li>{{current_option.price}}</li>		 				
+			 				<li>Resume</li>
+
+			 			</ul>
+
+			 			<ul ng-repeat="emptylock in locker_empty">
+			 				<li>{{emptylock}}</li>
+			 			</ul>
+
+			 			<p class="git-value">
+			 				<input type="checkbox" disabled name="hasAddonSuite" value="true" ng-model="price_addon">gift
+			 			</p>
+
+			 			<input type="button" ng-click="submit()" value="Buy Now!" />
+			 		</form>
+		 		</div>
+
+
+	</body>
+
+</html>

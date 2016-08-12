@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="testP5">
+<meta charset="utf8">
+	<head><title>P5 page</title>
+
+	</head>
+	<body ng-controller="mainController">
+	<ul>
+		<li><a href="#home">HOME</a></li>
+		<li><a href="#about">About</a></li>
+		<li><a href="#contact">Contact</a></li>
+
+	</ul>
+	<div id="main">
+		<div ng-view></div>
+	</div>
+
+
+	
+	<div class="footer"></div> 
+	<script src="lib/jquery-3.0.0.js"></script>
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-route.min.js"></script>
+	<script src="app.js"></script>
+
+	</body>
+
+</html>
