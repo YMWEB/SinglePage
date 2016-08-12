@@ -7,6 +7,21 @@ app.run(function($rootScope,$templateCache){
 		}
 	})
 })
+
+app.factory('myService',function(){
+	var savedData = {}
+	function set(data){
+		savedData = data;
+	}
+	function get(data){
+		return savedData;
+	}
+
+	return {
+		set:set,
+		get:get
+	}
+})
 //configure our routes
 app.config(function($routeProvider){
 	$routeProvider
@@ -42,7 +57,7 @@ app.config(function($routeProvider){
 	.otherwise('/home')
 })
 
-var mainCtrl = function($scope,$http){
+var mainCtrl = function($scope,$http,myService){
 	$scope.products =[
 					{	
 						"name": "云计价",
@@ -80,8 +95,29 @@ var mainCtrl = function($scope,$http){
    		}
    	)
    }
+
+   $scope.deleteLocker = function(lock){
+   	 var removeUsbKey = lock.usbKey;
+   	 for(i=0;i<$scope.locker_data.length;i++){
+   	 	if($scope.locker_data[i].usbKey == removeUsbKey){
+   	 		$scope.locker_data.splice(i,1);
+   	 	}
+   	 }
+   	 
+   }
+
+ 
+  $scope.$watch('locker_data',function(){
+  		myService.set($scope.locker_data);
+  		
+  },true)
    
 
+   $scope.submit = function(){
+   	 console.log(myService.get());
+   }
+   
+ 
    
    
    // $scope.current_option_change()=function(){
